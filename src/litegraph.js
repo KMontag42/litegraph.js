@@ -3747,7 +3747,7 @@ LGraphCanvas.prototype.UIinit = function()
     ctx.globalAlpha = editor_alpha;
 
     //clip if required (mask)
-    var shape = node.shape || "box";
+    var shape = node.shape || LiteGraph.NODE_DEFAULT_SHAPE;
     var size = new Float32Array(node.size);
     if (node.flags.collapsed) {
       size[0] = LiteGraph.NODE_COLLAPSED_WIDTH;
