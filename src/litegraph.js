@@ -3990,7 +3990,7 @@ LGraphCanvas.prototype.UIinit = function()
     var collapsed_radius = LiteGraph.NODE_COLLAPSED_RADIUS;
 
     //circle shape
-    var shape = node.shape || "box";
+    var shape = node.shape || LiteGraph.NODE_DEFAULT_SHAPE;
     if (shape == "circle") {
       ctx.beginPath();
       ctx.arc(node.size[0] * 0.5, node.size[1] * 0.5, collapsed_radius, 0, Math.PI * 2);
