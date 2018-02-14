@@ -1809,8 +1809,8 @@
             y,
             link_pos[0] - LiteGraph.NODE_PORT_PADDING,
             link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
-            20,
-            10
+            LiteGraph.NODE_PORT_PADDING * 2,
+            LiteGraph.NODE_PORT_PADDING
           )
         )
           return { input: input, slot: i, link_pos: link_pos, locked: input.locked };
@@ -1826,8 +1826,8 @@
             y,
             link_pos[0] - LiteGraph.NODE_PORT_PADDING,
             link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
-            20,
-            10
+            LiteGraph.NODE_PORT_PADDING * 2,
+            LiteGraph.NODE_PORT_PADDING
           )
         )
           return { output: output, slot: i, link_pos: link_pos, locked: output.locked };
@@ -2753,8 +2753,8 @@ LGraphCanvas.prototype.UIinit = function()
                   e.canvasY,
                   link_pos[0] - LiteGraph.NODE_PORT_PADDING,
                   link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
-                  20,
-                  10
+                  LiteGraph.NODE_PORT_PADDING * 2,
+                  LiteGraph.NODE_PORT_PADDING
                 )
               ) {
                 this.connecting_node = n;
@@ -2778,8 +2778,8 @@ LGraphCanvas.prototype.UIinit = function()
                   e.canvasY,
                   link_pos[0] - LiteGraph.NODE_PORT_PADDING,
                   link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
-                  20,
-                  10
+                  LiteGraph.NODE_PORT_PADDING * 2,
+                  LiteGraph.NODE_PORT_PADDING
                 )
               ) {
                 if (input.link !== null) {
@@ -2796,10 +2796,10 @@ LGraphCanvas.prototype.UIinit = function()
             isInsideRectangle(
               e.canvasX,
               e.canvasY,
-              n.pos[0] + n.size[0] - 5,
-              n.pos[1] + n.size[1] - 5,
-              5,
-              5
+              n.pos[0] + n.size[0] - LiteGraph.NODE_PORT_PADDING / 2,
+              n.pos[1] + n.size[1] - LiteGraph.NODE_PORT_PADDING / 2,
+              LiteGraph.NODE_PORT_PADDING / 2,
+              LiteGraph.NODE_PORT_PADDING / 2
             )
           ) {
             this.resizing_node = n;
@@ -3194,8 +3194,8 @@ LGraphCanvas.prototype.UIinit = function()
             canvasy,
             link_pos[0] - LiteGraph.NODE_PORT_PADDING,
             link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
-            20,
-            10
+            LiteGraph.NODE_PORT_PADDING * 2,
+            LiteGraph.NODE_PORT_PADDING
           )
         ) {
           if (slot_pos) {
@@ -3972,7 +3972,7 @@ LGraphCanvas.prototype.UIinit = function()
         0,
         no_title ? 0 : -title_height,
         size[0],
-        no_title ? size[1] : size[1] + title_height,
+        no_title ? size[1] : size[1] + title_height * 2,
         10
       );
       ctx.fill();
@@ -5250,7 +5250,7 @@ LGraphCanvas.prototype.resizeCanvas = function(width,height)
     if (options.event) {
       left = options.event.pageX - LiteGraph.NODE_PORT_PADDING;
       top = options.event.pageY - LiteGraph.NODE_PORT_PADDING;
-      if (options.title) top -= 20;
+      if (options.title) top -= LiteGraph.NODE_PORT_PADDING * 2;
 
       if (options.parentMenu) {
         var rect = options.parentMenu.root.getBoundingClientRect();
