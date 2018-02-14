@@ -1803,7 +1803,16 @@
       for (var i = 0, l = this.inputs.length; i < l; ++i) {
         var input = this.inputs[i];
         var link_pos = this.getConnectionPos(true, i);
-        if (isInsideRectangle(x, y, link_pos[0] - 10, link_pos[1] - 5, 20, 10))
+        if (
+          isInsideRectangle(
+            x,
+            y,
+            link_pos[0] - LiteGraph.NODE_PORT_PADDING,
+            link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
+            20,
+            10
+          )
+        )
           return { input: input, slot: i, link_pos: link_pos, locked: input.locked };
       }
 
@@ -1811,7 +1820,16 @@
       for (var i = 0, l = this.outputs.length; i < l; ++i) {
         var output = this.outputs[i];
         var link_pos = this.getConnectionPos(false, i);
-        if (isInsideRectangle(x, y, link_pos[0] - 10, link_pos[1] - 5, 20, 10))
+        if (
+          isInsideRectangle(
+            x,
+            y,
+            link_pos[0] - LiteGraph.NODE_PORT_PADDING,
+            link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
+            20,
+            10
+          )
+        )
           return { output: output, slot: i, link_pos: link_pos, locked: output.locked };
       }
 
@@ -2730,7 +2748,14 @@ LGraphCanvas.prototype.UIinit = function()
               var output = n.outputs[i];
               var link_pos = n.getConnectionPos(false, i);
               if (
-                isInsideRectangle(e.canvasX, e.canvasY, link_pos[0] - 10, link_pos[1] - 5, 20, 10)
+                isInsideRectangle(
+                  e.canvasX,
+                  e.canvasY,
+                  link_pos[0] - LiteGraph.NODE_PORT_PADDING,
+                  link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
+                  20,
+                  10
+                )
               ) {
                 this.connecting_node = n;
                 this.connecting_output = output;
@@ -2748,7 +2773,14 @@ LGraphCanvas.prototype.UIinit = function()
               var input = n.inputs[i];
               var link_pos = n.getConnectionPos(true, i);
               if (
-                isInsideRectangle(e.canvasX, e.canvasY, link_pos[0] - 10, link_pos[1] - 5, 20, 10)
+                isInsideRectangle(
+                  e.canvasX,
+                  e.canvasY,
+                  link_pos[0] - LiteGraph.NODE_PORT_PADDING,
+                  link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
+                  20,
+                  10
+                )
               ) {
                 if (input.link !== null) {
                   n.disconnectInput(i);
@@ -3156,7 +3188,16 @@ LGraphCanvas.prototype.UIinit = function()
       for (var i = 0, l = node.inputs.length; i < l; ++i) {
         var input = node.inputs[i];
         var link_pos = node.getConnectionPos(true, i);
-        if (isInsideRectangle(canvasx, canvasy, link_pos[0] - 10, link_pos[1] - 5, 20, 10)) {
+        if (
+          isInsideRectangle(
+            canvasx,
+            canvasy,
+            link_pos[0] - LiteGraph.NODE_PORT_PADDING,
+            link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
+            20,
+            10
+          )
+        ) {
           if (slot_pos) {
             slot_pos[0] = link_pos[0];
             slot_pos[1] = link_pos[1];
@@ -3815,7 +3856,11 @@ LGraphCanvas.prototype.UIinit = function()
             var text = slot.label != null ? slot.label : slot.name;
             if (text) {
               ctx.fillStyle = color;
-              ctx.fillText(text, pos[0] + LiteGraph.NODE_PORT_PADDING, pos[1] + 5);
+              ctx.fillText(
+                text,
+                pos[0] + LiteGraph.NODE_PORT_PADDING,
+                pos[1] + LiteGraph.NODE_PORT_PADDING / 2
+              );
             }
           }
         }
@@ -3855,7 +3900,11 @@ LGraphCanvas.prototype.UIinit = function()
             var text = slot.label != null ? slot.label : slot.name;
             if (text) {
               ctx.fillStyle = color;
-              ctx.fillText(text, pos[0] - 10, pos[1] + 5);
+              ctx.fillText(
+                text,
+                pos[0] - LiteGraph.NODE_PORT_PADDING,
+                pos[1] + LiteGraph.NODE_PORT_PADDING / 2
+              );
             }
           }
         }
@@ -4807,7 +4856,10 @@ LGraphCanvas.prototype.resizeCanvas = function(width,height)
     if (node.clonable == false) return;
     var newnode = node.clone();
     if (!newnode) return;
-    newnode.pos = [node.pos[0] + 5, node.pos[1] + 5];
+    newnode.pos = [
+      node.pos[0] + LiteGraph.NODE_PORT_PADDING / 2,
+      node.pos[1] + LiteGraph.NODE_PORT_PADDING / 2
+    ];
     node.graph.add(newnode);
     node.setDirtyCanvas(true, true);
   };
@@ -5196,8 +5248,8 @@ LGraphCanvas.prototype.resizeCanvas = function(width,height)
     var left = options.left || 0;
     var top = options.top || 0;
     if (options.event) {
-      left = options.event.pageX - 10;
-      top = options.event.pageY - 10;
+      left = options.event.pageX - LiteGraph.NODE_PORT_PADDING;
+      top = options.event.pageY - LiteGraph.NODE_PORT_PADDING;
       if (options.title) top -= 20;
 
       if (options.parentMenu) {
@@ -5208,10 +5260,10 @@ LGraphCanvas.prototype.resizeCanvas = function(width,height)
       var body_rect = document.body.getBoundingClientRect();
       var root_rect = root.getBoundingClientRect();
 
-      if (left > body_rect.width - root_rect.width - 10)
-        left = body_rect.width - root_rect.width - 10;
-      if (top > body_rect.height - root_rect.height - 10)
-        top = body_rect.height - root_rect.height - 10;
+      if (left > body_rect.width - root_rect.width - LiteGraph.NODE_PORT_PADDING)
+        left = body_rect.width - root_rect.width - LiteGraph.NODE_PORT_PADDING;
+      if (top > body_rect.height - root_rect.height - LiteGraph.NODE_PORT_PADDING)
+        top = body_rect.height - root_rect.height - LiteGraph.NODE_PORT_PADDING;
     }
 
     root.style.left = left + "px";
