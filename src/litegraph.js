@@ -2099,7 +2099,7 @@
     }
 
     if (is_input && slot_number == -1) {
-      return [this.pos[0] + 10, this.pos[1] + 10];
+      return [this.pos[0] + LiteGraph.NODE_PORT_PADDING, this.pos[1] + LiteGraph.NODE_PORT_PADDING];
     }
 
     if (is_input && this.inputs.length > slot_number && this.inputs[slot_number].pos)
