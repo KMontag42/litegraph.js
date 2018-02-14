@@ -29,6 +29,7 @@
     NODE_MIN_WIDTH: 50,
     NODE_COLLAPSED_RADIUS: 10,
     NODE_COLLAPSED_WIDTH: 80,
+    NODE_PORT_PADDING: 10,
     CANVAS_GRID_SIZE: 10,
     NODE_TITLE_COLOR: "#222",
     NODE_DEFAULT_COLOR: "#999",
@@ -2117,9 +2118,12 @@
     )
       return [
         this.pos[0] + this.size[0] + 1,
-        this.pos[1] + 10 + slot_number * LiteGraph.NODE_SLOT_HEIGHT
+        this.pos[1] + LiteGraph.NODE_PORT_PADDING + slot_number * LiteGraph.NODE_SLOT_HEIGHT
       ];
-    return [this.pos[0], this.pos[1] + 10 + slot_number * LiteGraph.NODE_SLOT_HEIGHT];
+    return [
+      this.pos[0],
+      this.pos[1] + LiteGraph.NODE_PORT_PADDING + slot_number * LiteGraph.NODE_SLOT_HEIGHT
+    ];
   };
 
   /* Force align to grid */
