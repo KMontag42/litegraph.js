@@ -2752,9 +2752,9 @@ LGraphCanvas.prototype.UIinit = function()
                   e.canvasX,
                   e.canvasY,
                   link_pos[0] - LiteGraph.NODE_PORT_PADDING,
-                  link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
-                  LiteGraph.NODE_PORT_PADDING * 2,
-                  LiteGraph.NODE_PORT_PADDING
+                  link_pos[1] - 5,
+                  20,
+                  10
                 )
               ) {
                 this.connecting_node = n;
@@ -2777,9 +2777,9 @@ LGraphCanvas.prototype.UIinit = function()
                   e.canvasX,
                   e.canvasY,
                   link_pos[0] - LiteGraph.NODE_PORT_PADDING,
-                  link_pos[1] - LiteGraph.NODE_PORT_PADDING / 2,
-                  LiteGraph.NODE_PORT_PADDING * 2,
-                  LiteGraph.NODE_PORT_PADDING
+                  link_pos[1] - 5,
+                  20,
+                  10
                 )
               ) {
                 if (input.link !== null) {
@@ -2798,8 +2798,8 @@ LGraphCanvas.prototype.UIinit = function()
               e.canvasY,
               n.pos[0] + n.size[0] - LiteGraph.NODE_PORT_PADDING / 2,
               n.pos[1] + n.size[1] - LiteGraph.NODE_PORT_PADDING / 2,
-              LiteGraph.NODE_PORT_PADDING / 2,
-              LiteGraph.NODE_PORT_PADDING / 2
+              5,
+              5
             )
           ) {
             this.resizing_node = n;
@@ -2816,8 +2816,8 @@ LGraphCanvas.prototype.UIinit = function()
             e.canvasY,
             n.pos[0],
             n.pos[1] - LiteGraph.NODE_TITLE_HEIGHT,
-            LiteGraph.NODE_TITLE_HEIGHT,
-            LiteGraph.NODE_TITLE_HEIGHT
+            10,
+            10
           )
         ) {
           n.collapse();
