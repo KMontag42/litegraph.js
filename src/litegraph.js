@@ -1731,7 +1731,7 @@
         if (output_width < text_width) output_width = text_width;
       }
 
-    size[0] = Math.max(input_width + output_width + 10, title_width);
+    size[0] = Math.max(input_width + output_width + LiteGraph.NODE_PORT_PADDING, title_width);
     size[0] = Math.max(size[0], LiteGraph.NODE_WIDTH);
 
     function compute_text_size(text) {
@@ -3815,7 +3815,7 @@ LGraphCanvas.prototype.UIinit = function()
             var text = slot.label != null ? slot.label : slot.name;
             if (text) {
               ctx.fillStyle = color;
-              ctx.fillText(text, pos[0] + 10, pos[1] + 5);
+              ctx.fillText(text, pos[0] + LiteGraph.NODE_PORT_PADDING, pos[1] + 5);
             }
           }
         }
@@ -4075,7 +4075,10 @@ LGraphCanvas.prototype.UIinit = function()
           var start_node_slotpos = null;
 
           if (start_node_slot == -1)
-            start_node_slotpos = [start_node.pos[0] + 10, start_node.pos[1] + 10];
+            start_node_slotpos = [
+              start_node.pos[0] + LiteGraph.NODE_PORT_PADDING,
+              start_node.pos[1] + LiteGraph.NODE_PORT_PADDING
+            ];
           else start_node_slotpos = start_node.getConnectionPos(false, start_node_slot);
 
           this.renderLink(ctx, start_node_slotpos, node.getConnectionPos(true, i), link);
@@ -4126,10 +4129,16 @@ LGraphCanvas.prototype.UIinit = function()
       ctx.bezierCurveTo(a[0] + dist * 0.25, a[1], b[0] - dist * 0.25, b[1], b[0], b[1]);
     } else {
       //lines
-      ctx.moveTo(a[0] + 10, a[1]);
-      ctx.lineTo((a[0] + 10 + (b[0] - 10)) * 0.5, a[1]);
-      ctx.lineTo((a[0] + 10 + (b[0] - 10)) * 0.5, b[1]);
-      ctx.lineTo(b[0] - 10, b[1]);
+      ctx.moveTo(a[0] + LiteGraph.NODE_PORT_PADDING, a[1]);
+      ctx.lineTo(
+        (a[0] + LiteGraph.NODE_PORT_PADDING + (b[0] - LiteGraph.NODE_PORT_PADDING)) * 0.5,
+        a[1]
+      );
+      ctx.lineTo(
+        (a[0] + LiteGraph.NODE_PORT_PADDING + (b[0] - LiteGraph.NODE_PORT_PADDING)) * 0.5,
+        b[1]
+      );
+      ctx.lineTo(b[0] - LiteGraph.NODE_PORT_PADDING, b[1]);
     }
 
     //rendering the outline of the connection can be a little bit slow
