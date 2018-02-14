@@ -3892,7 +3892,7 @@ LGraphCanvas.prototype.UIinit = function()
     var title_height = LiteGraph.NODE_TITLE_HEIGHT;
 
     //render depending on shape
-    var shape = node.shape || "box";
+    var shape = node.shape || LiteGraph.NODE_DEFAULT_SHAPE;
     if (shape == "box") {
       ctx.beginPath();
       ctx.rect(
@@ -3914,7 +3914,7 @@ LGraphCanvas.prototype.UIinit = function()
         );
         ctx.strokeStyle = fgcolor;
       }
-    } else if (node.shape == "round") {
+    } else if (shape == "round") {
       ctx.roundRect(
         0,
         no_title ? 0 : -title_height,
@@ -3923,7 +3923,7 @@ LGraphCanvas.prototype.UIinit = function()
         10
       );
       ctx.fill();
-    } else if (node.shape == "circle") {
+    } else if (shape == "circle") {
       ctx.beginPath();
       ctx.arc(size[0] * 0.5, size[1] * 0.5, size[0] * 0.5, 0, Math.PI * 2);
       ctx.fill();
